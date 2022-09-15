@@ -66,7 +66,7 @@ function App() {
     setIsProcessing(true);
     api.updateUserProfile(data, token)
     .then((newUser) => {
-      setCurrentUser(newUser);
+      setCurrentUser(newUser.data);
       closeAllPopups();
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ function App() {
     setIsProcessing(true);
     api.setUserAvatar(data, token)
     .then((newUser) => {
-      setCurrentUser(newUser);
+      setCurrentUser(newUser.data);
       closeAllPopups();
     })
     .catch((err) => {
@@ -148,7 +148,7 @@ function App() {
     setIsProcessing(true);
     api.addCard(card, token)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard.data, ...cards]);
         closeAllPopups();
       })
       .catch((err) => {
@@ -233,7 +233,7 @@ function App() {
         .then((res) => {
           const [initialUser,initialCards] = res;
           setCurrentUser(initialUser.data);
-          setCards(initialCards.data)
+          setCards(initialCards.data.reverse())
         })
         .catch((err) => {
           console.log(err)
