@@ -1,0 +1,11 @@
+.photo__like {
+  padding: 0;
+  margin: 0;
+  width: 26px;
+  box-sizing: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}

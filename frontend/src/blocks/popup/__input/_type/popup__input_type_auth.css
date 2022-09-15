@@ -1,0 +1,8 @@
+.popup__input_type_auth {
+  border-bottom: 1px solid white;
+  color: white;
+  background-color: black;
+  width: 100%;
+  margin: 0 0 25px;
+}
+

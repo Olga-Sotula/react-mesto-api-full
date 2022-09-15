@@ -1,0 +1,10 @@
+.photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: stretch;
+  min-height: 100%;
+  position: relative;
+  background-color: white;
+  border-radius: 5%;
+}

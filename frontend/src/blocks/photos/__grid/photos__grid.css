@@ -1,0 +1,8 @@
+.photos__grid {
+  margin: auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 282px);
+  gap: 18px 11px;
+  justify-content: center;
+}

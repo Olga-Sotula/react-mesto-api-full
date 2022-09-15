@@ -1,0 +1,27 @@
+.popup__container {
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  column-gap: 8px;
+  row-gap: 8px;
+  grid-template-columns: 32px calc(100% - 80px) 32px;
+  grid-template-areas:
+    ". . close"
+    ". content .";
+}
+
+@media screen and (max-width: 767px){
+  .popup__container {
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "close"
+      "content";
+  }
+}
+
+@media screen and (max-width: 424px){
+  .popup__container {
+    row-gap: 16px;
+  }
+}
+

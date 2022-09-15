@@ -1,0 +1,11 @@
+.photos {
+  margin: 0 auto;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1024px){
+  .photos {
+    padding: 24px 0;
+  }
+}

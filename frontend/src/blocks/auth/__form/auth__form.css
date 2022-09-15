@@ -1,0 +1,13 @@
+.auth__form {
+  box-sizing: border-box;
+  padding: 35px 10px;
+  margin: 23px auto 0;
+  width: 381px;
+}
+
+@media screen and (max-width: 767px){
+  .auth__form {
+    padding: 25px 21px;
+    width: 235px;
+  }
+}
