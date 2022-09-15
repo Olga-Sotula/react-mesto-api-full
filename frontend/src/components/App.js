@@ -37,6 +37,8 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const token = localStorage.getItem('jwt');
+
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -62,7 +64,7 @@ function App() {
 
   function handleUpdateUser(data) {
     setIsProcessing(true);
-    api.updateUserProfile(data)
+    api.updateUserProfile(data, token)
     .then((newUser) => {
       setCurrentUser(newUser);
       closeAllPopups();
@@ -77,7 +79,7 @@ function App() {
 
   function handleUpdateAvatar(data) {
     setIsProcessing(true);
-    api.setUserAvatar(data)
+    api.setUserAvatar(data, token)
     .then((newUser) => {
       setCurrentUser(newUser);
       closeAllPopups();
@@ -106,7 +108,7 @@ function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked)
+    api.changeLikeCardStatus(card._id, !isLiked, token)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
@@ -127,7 +129,7 @@ function App() {
 
   function handleDeleteCardSubmit(card) {
     setIsProcessing(true);
-    api.deleteCard(card._id)
+    api.deleteCard(card._id, token)
       .then(
         () => {
           const newCards = cards.filter((elem) => elem !== card);
@@ -144,7 +146,7 @@ function App() {
 
   function handleAddPlaceSubmit(card) {
     setIsProcessing(true);
-    api.addCard(card)
+    api.addCard(card, token)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -220,7 +222,6 @@ function App() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
     if (token) {
       setToken(token);
     }
@@ -228,10 +229,11 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      Promise.all([api.getUserInfo(),api.getCards()])
-        .then(([initialUser,initialCards]) => {
-          setCurrentUser(initialUser);
-          setCards(initialCards)
+      Promise.all([api.getUserInfo(token),api.getCards(token)])
+        .then((res) => {
+          const [initialUser,initialCards] = res;
+          setCurrentUser(initialUser.data);
+          setCards(initialCards.data)
         })
         .catch((err) => {
           console.log(err)
