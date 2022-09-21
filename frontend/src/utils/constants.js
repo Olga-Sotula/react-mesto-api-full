@@ -1,3 +1,3 @@
-const BASE_URL = "http://api.soy.nomoredomains.sbs";
+const BASE_URL = "api.soy.nomoredomains.sbs";
 
 export default BASE_URL;
